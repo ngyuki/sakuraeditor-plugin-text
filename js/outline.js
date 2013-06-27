@@ -9,24 +9,30 @@
 
 (function(){
 
+	if (Plugin.GetOption('debug', 'debug_enable') - 0)
+	{
+		var trace = function (str)
+		{
+			Editor.TraceOut(str);
+		};
+
+		var debug = true;
+	}
+	else
+	{
+		var trace = function (str) {};
+
+		var debug = false;
+	}
+
 	var trim = function (str)
 	{
 		return str.replace(/^\s+/,"").replace(/\s+$/,"");
 	};
 
-	var log = function (str) {};
-
-	if (Plugin.GetOption('debug', 'debug_enable') - 0)
-	{
-		log = function (str)
-		{
-			Editor.TraceOut(str, 1);
-		};
-	}
-
 	var addOutline = function (row, column, str, level)
 	{
-		log(level + " ::: " + str);
+		debug && trace("<" + level + "> " + str + "  (" + row + ", " + column + ")");
 		Outline.AddFuncInfo2(row, column, str, level);
 	};
 
@@ -46,8 +52,7 @@
 
 		if (!code && line.match(/^(#+)\s+\S/))
 		{
-			var mark = RegExp.$1;
-			var level = (3 - mark.length);
+			var level = (3 - RegExp.$1.length);
 
 			addOutline(no, 1, trim(line.replace(/^#+\s+/, '')), level < 0 ? 0 : level);
 		}
