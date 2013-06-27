@@ -1,0 +1,30 @@
+;-------------------------------------------------------------------------------
+; Sakura Editor Text Outline Plugin
+; 
+; @author ngyuki <ngyuki.ts@gmail.com>
+; @link https://github.com/ngyuki/sakuraeditor-plugin-text
+; @copyright Copyright 2012 ngyuki
+; @license http://www.opensource.org/licenses/mit-license.php MIT License
+;-------------------------------------------------------------------------------
+
+[Plugin]
+Id=net.ngyuki.sakuraeditor.plugin.text
+Name=Text Outline Plugin
+Description=Text Outline Plugin
+Type=wsh
+Author=ngyuki
+Version=0.0.0.1
+Url=https://github.com/ngyuki/sakuraeditor-plugin-text
+
+[Plug]
+Outline=js\outline.js
+Outline.Label=Text
+
+[Wsh]
+UseCache=0
+
+[Option]
+O[1].Section=debug
+O[1].Key=debug_enable
+O[1].Label=debug_enable
+O[1].Type=Bool
